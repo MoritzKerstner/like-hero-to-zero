@@ -6,39 +6,37 @@
 <h:head>
 	<title>Neue CO2-Emission hinzufügen</title>
 </h:head>
-<body>
-	<h:head>
-		<title>Neue CO2-Emission</title>
-	</h:head>
+<h:head>
+	<title>Neue CO2-Emission</title>
+</h:head>
 
-	<h:body>
-		<h1>Neue CO2-Emission hinzufügen</h1>
+<h:body>
+	<h1>Neue CO2-Emission hinzufügen</h1>
 
-		<h:form>
-			<p:panel header="Emissionsdaten eingeben">
-				<p:messages id="messages" showDetail="true" closable="true" />
+	<h:form>
+		<p:panel header="Emissionsdaten eingeben">
+			<p:messages id="messages" showDetail="true" closable="true" />
 
-				<h:panelGrid columns="2" cellpadding="5">
-					<h:outputLabel for="land" value="Land:" />
-					<p:inputText id="land" value="#{datenController.neuesLand}"
-						required="true" />
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="land" value="Land:" />
+				<p:inputText id="land" value="#{datenController.neuesLand}"
+					required="true" />
 
-					<h:outputLabel for="jahr" value="Jahr:" />
-					<p:inputText id="jahr" value="#{datenController.neuesJahr}"
-						required="true" />
+				<h:outputLabel for="jahr" value="Jahr:" />
+				<p:inputText id="jahr" value="#{datenController.neuesJahr}"
+					required="true" />
 
-					<h:outputLabel for="co2Wert" value="CO2-Wert:" />
-					<p:inputText id="co2Wert" value="#{datenController.neuerCo2Wert}"
-						required="true" />
-				</h:panelGrid>
+				<h:outputLabel for="co2Wert" value="CO2-Wert:" />
+				<p:inputText id="co2Wert" value="#{datenController.neuerCo2Wert}"
+					required="true" />
+			</h:panelGrid>
 
-				<p:commandButton value="Speichern"
-					actionListener="#{datenController.neueEmissionHinzufuegen}"
-					ajax="false" />
+			<p:commandButton value="Speichern"
+				actionListener="#{datenController.neueEmissionHinzufuegen}"
+				ajax="false" />
 
-				<p:button value="Zurück" outcome="index.xhtml" />
-			</p:panel>
-		</h:form>
-	</h:body>
-</body>
+			<p:button value="Zurück" outcome="index.xhtml" />
+		</p:panel>
+	</h:form>
+</h:body>
 </html>

@@ -1,28 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <title>CO2 Emissionen</title>
+	<title>CO2 Emissionen</title>
 </h:head>
 <h:body>
-    <h1>CO2-Emissionen weltweit</h1>
-    
-    <p:dataTable value="#{datenController.alleEmissionen}" var="emission" lazy="false">
-        <p:column headerText="Land">
+	<h1>CO2-Emissionen weltweit</h1>
+
+	<h:dataTable value="#{datenController.alleEmissionen}" var="emission"
+		border="1">
+		<h:column>
+			<f:facet name="header">Land</f:facet>
             #{emission.land}
-        </p:column>
-        <p:column headerText="Jahr">
+        </h:column>
+		<h:column>
+			<f:facet name="header">Jahr</f:facet>
             #{emission.jahr}
-        </p:column>
-        <p:column headerText="CO2-Wert">
+        </h:column>
+		<h:column>
+			<f:facet name="header">CO2-Wert</f:facet>
             #{emission.co2Wert}
-        </p:column>
-    </p:dataTable>
-    
-    <h:form>
-        <p:commandButton value="Neue Emission hinzufügen" action="neueEmission.xhtml"/>
-    </h:form>
+        </h:column>
+	</h:dataTable>
+
+	<h:form>
+		<h:commandButton value="Neue Emission hinzufügen"
+			action="neueEmission.xhtml" />
+	</h:form>
 </h:body>
 </html>
