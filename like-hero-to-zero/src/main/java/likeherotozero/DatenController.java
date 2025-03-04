@@ -3,6 +3,10 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.util.List;
 import jakarta.inject.Named;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
 import jakarta.enterprise.context.SessionScoped; 
 
 @Named
@@ -17,13 +21,35 @@ public class DatenController implements Serializable {
 		datenVerwalter = new DatenVerwalter();
 	}
 
+
 	public void neueEmissionHinzufuegen() {
-		Co2Emission emission = new Co2Emission(neuesLand, neuesJahr, neuerCo2Wert);
-		datenVerwalter.emissionHinzufuegen(emission);
-		neuesLand = "";
-		neuesJahr = 0;
-		neuerCo2Wert = 0.0;
+	    EntityManagerFactory emf = Persistence.createEntityManagerFactory("co2_emissionenPU");
+	    EntityManager em = emf.createEntityManager();
+	    
+	    EntityTransaction t = em.getTransaction();
+	    try {
+	        t.begin();
+	        Co2Emission emission = new Co2Emission(neuesLand, neuesJahr, neuerCo2Wert);
+	        em.persist(emission);  // Speichert die Emission in der Datenbank
+	        t.commit();
+	    } catch (Exception e) {
+	        if (t.isActive()) {
+	            t.rollback(); // Falls ein Fehler auftritt, wird die Transaktion zurückgesetzt
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        em.close();
+	        emf.close();
+	    }
+
+	    // Nach dem Speichern Felder zurücksetzen
+	    neuesLand = "";
+	    neuesJahr = 0;
+	    neuerCo2Wert = 0.0;
 	}
+
+	
+	
 
 	public List<Co2Emission> getAlleEmissionen() {
 		return datenVerwalter.getAlleEmissionen();
